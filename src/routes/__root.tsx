@@ -10,7 +10,11 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { Footer } from "../components/site/Footer";
+import { Navbar } from "../components/site/Navbar";
+import { Toaster } from "../components/ui/sonner";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+
 
 function NotFoundComponent() {
   return (
@@ -77,21 +81,36 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "LEADTION | B2B Lead Generation & Business Growth Agency" },
+      {
+        name: "description",
+        content:
+          "LEADTION helps businesses generate genuine leads, increase sales and grow revenue across the USA, UK and India.",
+      },
+      { name: "author", content: "LEADTION" },
+      { name: "theme-color", content: "#07090f" },
+      { property: "og:title", content: "LEADTION | Generate Genuine Leads. Grow Revenue." },
+      {
+        property: "og:description",
+        content:
+          "B2B lead generation and business growth agency helping companies connect with genuine customers.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "LEADTION" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap",
+      },
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
     ],
   }),
   shellComponent: RootShell,
@@ -119,8 +138,16 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="flex min-h-screen flex-col bg-background">
+        <Navbar />
+        <main className="flex-1">
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
+      <Toaster />
     </QueryClientProvider>
   );
 }
+
