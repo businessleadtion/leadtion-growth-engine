@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as HowWeWorkRouteImport } from './routes/how-we-work'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as WhyLeadtionRouteImport } from './routes/why-leadtion'
@@ -23,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HowWeWorkRoute = HowWeWorkRouteImport.update({
@@ -44,6 +50,7 @@ const WhyLeadtionRoute = WhyLeadtionRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/how-we-work': typeof HowWeWorkRoute
   '/services': typeof ServicesRoute
   '/why-leadtion': typeof WhyLeadtionRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/how-we-work': typeof HowWeWorkRoute
   '/services': typeof ServicesRoute
   '/why-leadtion': typeof WhyLeadtionRoute
@@ -59,22 +67,32 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/how-we-work': typeof HowWeWorkRoute
   '/services': typeof ServicesRoute
   '/why-leadtion': typeof WhyLeadtionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/how-we-work' | '/services' | '/why-leadtion'
+  fullPaths:
+    '/' | '/about' | '/contact' | '/how-we-work' | '/services' | '/why-leadtion'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/how-we-work' | '/services' | '/why-leadtion'
+  to:
+    '/' | '/about' | '/contact' | '/how-we-work' | '/services' | '/why-leadtion'
   id:
-    '__root__' | '/' | '/about' | '/how-we-work' | '/services' | '/why-leadtion'
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/how-we-work'
+    | '/services'
+    | '/why-leadtion'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
   HowWeWorkRoute: typeof HowWeWorkRoute
   ServicesRoute: typeof ServicesRoute
   WhyLeadtionRoute: typeof WhyLeadtionRoute
@@ -94,6 +112,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/how-we-work': {
@@ -123,6 +148,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
   HowWeWorkRoute: HowWeWorkRoute,
   ServicesRoute: ServicesRoute,
   WhyLeadtionRoute: WhyLeadtionRoute,
