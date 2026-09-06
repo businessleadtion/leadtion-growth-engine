@@ -16,13 +16,18 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        hero: "bg-brand-gradient text-primary-foreground font-semibold tracking-tight shadow-glow transition-transform duration-500 hover:-translate-y-0.5 hover:brightness-110 glow-ring",
+        outlineBrand:
+          "border border-border bg-surface/60 text-foreground backdrop-blur transition-all duration-500 hover:border-brand hover:bg-surface-2 hover:-translate-y-0.5",
       },
       size: {
         default: "h-9 px-4 py-2",
         sm: "h-8 rounded-md px-3 text-xs",
-        lg: "h-10 rounded-md px-8",
+        lg: "h-11 rounded-lg px-8",
+        xl: "h-14 rounded-xl px-9 text-base",
         icon: "h-9 w-9",
       },
+
     },
     defaultVariants: {
       variant: "default",
