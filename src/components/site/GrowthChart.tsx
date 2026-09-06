@@ -15,42 +15,46 @@ export function GrowthChart() {
         </span>
       </div>
 
-      <div className="mt-8 flex h-40 items-end gap-2.5 sm:gap-4">
-        {bars.map((h, i) => (
-          <div key={i} className="flex-1">
-            <div
-              className="origin-bottom rounded-t-md bg-brand-gradient opacity-90"
-              style={{
-                height: `${h}%`,
-                animation: `grow-bar 1.1s var(--ease-lux) ${i * 110}ms both`,
-              }}
-            />
-          </div>
-        ))}
+      <div className="relative mt-8 h-40">
+        <div className="flex h-full items-end gap-2.5 sm:gap-4">
+          {bars.map((h, i) => (
+            <div key={i} className="flex h-full flex-1 items-end">
+              <div
+                className="w-full origin-bottom rounded-t-md bg-brand-gradient opacity-80"
+                style={{
+                  height: `${h}%`,
+                  animation: `grow-bar 1.1s var(--ease-lux) ${i * 110}ms both`,
+                }}
+              />
+            </div>
+          ))}
+        </div>
+
+        <svg
+          viewBox="0 0 320 120"
+          preserveAspectRatio="none"
+          role="img"
+          aria-label="Rising revenue trend line"
+          className="pointer-events-none absolute inset-0 size-full"
+        >
+          <defs>
+            <linearGradient id="lineGrad" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0%" stopColor="oklch(0.85 0.14 225)" />
+              <stop offset="100%" stopColor="oklch(0.72 0.2 258)" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M6 112 L54 96 L102 100 L150 68 L198 48 L246 26 L314 8"
+            fill="none"
+            stroke="url(#lineGrad)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeDasharray="1200"
+            style={{ animation: "draw-line 2s var(--ease-lux) 400ms both" }}
+          />
+        </svg>
       </div>
 
-      <svg
-        viewBox="0 0 320 120"
-        role="img"
-        aria-label="Rising revenue trend line"
-        className="pointer-events-none absolute inset-x-6 bottom-16 h-28 w-[calc(100%-3rem)]"
-      >
-        <defs>
-          <linearGradient id="lineGrad" x1="0" y1="1" x2="1" y2="0">
-            <stop offset="0%" stopColor="oklch(0.78 0.16 232)" />
-            <stop offset="100%" stopColor="oklch(0.62 0.212 258)" />
-          </linearGradient>
-        </defs>
-        <path
-          d="M6 108 L54 92 L102 96 L150 66 L198 48 L246 28 L310 6"
-          fill="none"
-          stroke="url(#lineGrad)"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeDasharray="1200"
-          style={{ animation: "draw-line 2s var(--ease-lux) 400ms both" }}
-        />
-      </svg>
 
       <div className="mt-6 grid grid-cols-3 gap-4 border-t border-border pt-5 text-center">
         {[
